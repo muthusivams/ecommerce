@@ -136,3 +136,8 @@ docker-compose up --build
 Collection file:
 - `postman/ecommerce-microservices.postman_collection.json`
 
+
+## 13) Maven/IDE Troubleshooting
+- In IntelliJ *Runner parameters*, do **not** prepend `mvn` as an argument.
+- Correct command is goals only, for example: `clean package -DskipTests`.
+- If `mvn` is added to goals, Maven fails with `Unknown lifecycle phase "mvn"`.
