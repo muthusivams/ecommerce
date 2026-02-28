@@ -1,0 +1,9 @@
+{
+  "info": {"name": "Ecommerce Microservices", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},
+  "item": [
+    {"name": "Register User", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "url": "http://localhost:8080/api/users/auth/register", "body": {"mode": "raw", "raw": "{\n  \"email\": \"alice@example.com\",\n  \"password\": \"Pass@123\",\n  \"fullName\": \"Alice\"\n}"}}},
+    {"name": "Login", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "url": "http://localhost:8080/api/users/auth/login", "body": {"mode": "raw", "raw": "{\n  \"email\": \"alice@example.com\",\n  \"password\": \"Pass@123\"\n}"}}},
+    {"name": "Create Product", "request": {"method": "POST", "url": "http://localhost:8080/api/products", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"name\": \"Laptop\",\n  \"category\": \"Electronics\",\n  \"description\": \"14 inch\",\n  \"price\": 1200.00\n}"}}},
+    {"name": "Create Order", "request": {"method": "POST", "url": "http://localhost:8080/api/orders", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"userId\": 1,\n  \"productId\": 1,\n  \"quantity\": 1,\n  \"amount\": 1200.00,\n  \"requestId\": \"req-001\"\n}"}}}
+  ]
+}

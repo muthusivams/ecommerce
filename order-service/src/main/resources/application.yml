@@ -1,0 +1,11 @@
+server: { port: 8085 }
+spring:
+  application: { name: order-service }
+  datasource:
+    url: jdbc:mysql://mysql:3306/order_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  jpa: { hibernate: { ddl-auto: update } }
+  kafka: { bootstrap-servers: kafka:9092 }
+eureka.client.service-url.defaultZone: http://discovery-server:8761/eureka/
+feign.client.config.default.connectTimeout: 5000
