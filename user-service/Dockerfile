@@ -2,7 +2,7 @@ FROM maven:3.8.8-eclipse-temurin-8 AS build
 WORKDIR /workspace
 COPY pom.xml ./
 COPY user-service/ ./user-service/
-RUN mvn -f user-service/pom.xml -DskipTests clean package
+RUN mvn -N -f pom.xml install && mvn -f user-service/pom.xml -DskipTests clean package
 
 FROM eclipse-temurin:8-jre
 WORKDIR /app
