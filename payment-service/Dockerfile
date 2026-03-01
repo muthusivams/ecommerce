@@ -2,7 +2,7 @@ FROM maven:3.8.8-eclipse-temurin-8 AS build
 WORKDIR /workspace
 COPY pom.xml ./
 COPY payment-service/ ./payment-service/
-RUN mvn -f payment-service/pom.xml -DskipTests clean package
+RUN mvn -N -f pom.xml install && mvn -f payment-service/pom.xml -DskipTests clean package
 
 FROM eclipse-temurin:8-jre
 WORKDIR /app
