@@ -2,7 +2,7 @@ server: { port: 8086 }
 spring:
   application: { name: payment-service }
   datasource:
-    url: ${MYSQL_URL:jdbc:mysql://mysql:3306/payment_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true}
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/payment_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
     username: ${MYSQL_USERNAME:root}
     password: ${MYSQL_PASSWORD:root}
   jpa: { hibernate: { ddl-auto: update } }
