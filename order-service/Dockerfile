@@ -2,7 +2,17 @@ FROM maven:3.8.8-eclipse-temurin-8 AS build
 WORKDIR /workspace
 COPY pom.xml ./
 COPY order-service/ ./order-service/
-RUN mvn -N -f pom.xml install && mvn -f order-service/pom.xml -DskipTests clean package
+RUN set -eux; \
+    success=0; \
+    for i in 1 2 3 4 5; do \
+      if mvn -N -f pom.xml install && mvn -f order-service/pom.xml -DskipTests clean package; then \
+        success=1; \
+        break; \
+      fi; \
+      echo "Maven build failed (attempt ${i}/5). Retrying in 10s..."; \
+      sleep 10; \
+    done; \
+    [ "$success" -eq 1 ]
 
 FROM eclipse-temurin:8-jre
 WORKDIR /app
