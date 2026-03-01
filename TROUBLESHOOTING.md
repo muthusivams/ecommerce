@@ -15,7 +15,25 @@ Class com.sun.tools.javac.tree.JCTree$JCImport does not have member field
 
 This is typically a **JDK + annotation processor incompatibility**, most commonly caused by an older Lombok version running on newer JDKs (especially JDK 21+).
 
-## Recommended fixes
+## Prerequisite: make sure Maven is installed and available
+
+If you see this on Windows:
+
+```text
+mvn : The term 'mvn' is not recognized as the name of a cmdlet...
+```
+
+then Maven is not installed (or not on `PATH`) in that shell.
+
+Use one of these options:
+
+1. Prefer project wrapper (if present):
+   - PowerShell: `./mvnw.cmd -v`
+   - CMD: `mvnw.cmd -v`
+2. Install Maven and add `<maven_install_dir>\bin` to your `PATH`.
+3. Restart your terminal after updating `PATH`, then verify with `mvn -v`.
+
+## Recommended fixes for the `JCImport` error
 
 1. Upgrade Lombok to a version that supports your JDK:
    - `1.18.30+` for JDK 21 compatibility (or latest available).
@@ -62,10 +80,27 @@ This is typically a **JDK + annotation processor incompatibility**, most commonl
 
 ## Quick verification commands
 
+### Linux/macOS
+
 ```bash
 mvn -v
 java -version
 mvn -DskipTests clean compile
+```
+
+### Windows PowerShell
+
+```powershell
+mvn -v
+java -version
+mvn -DskipTests clean compile
+```
+
+If `mvn` is still not found but wrapper exists:
+
+```powershell
+./mvnw.cmd -v
+./mvnw.cmd -DskipTests clean compile
 ```
 
 If the error persists, check for transitive/duplicate Lombok versions:
