@@ -4,6 +4,6 @@ spring:
   datasource:
     url: ${MYSQL_URL:jdbc:mysql://mysql:3306/product_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true}
     username: ${MYSQL_USERNAME:root}
-    password: ${MYSQL_PASSWORD:root}
+    password: ${MYSQL_PASSWORD:Thenu@5612}
   jpa: { hibernate: { ddl-auto: update } }
 eureka.client.service-url.defaultZone: http://discovery-server:8761/eureka/
