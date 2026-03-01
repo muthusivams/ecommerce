@@ -1,0 +1,41 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates: [ Path=/api/users/** ]
+        - id: product-service
+          uri: lb://product-service
+          predicates: [ Path=/api/products/** ]
+        - id: inventory-service
+          uri: lb://inventory-service
+          predicates: [ Path=/api/inventory/** ]
+        - id: cart-service
+          uri: lb://cart-service
+          predicates: [ Path=/api/cart/** ]
+        - id: order-service
+          uri: lb://order-service
+          predicates: [ Path=/api/orders/** ]
+        - id: payment-service
+          uri: lb://payment-service
+          predicates: [ Path=/api/payments/** ]
+security:
+  jwt:
+    secret: my-super-secret-key
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery-server:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

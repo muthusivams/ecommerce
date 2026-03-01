@@ -1,0 +1,5 @@
+server: { port: 8087 }
+spring:
+  application: { name: notification-service }
+  kafka: { bootstrap-servers: kafka:9092 }
+eureka.client.service-url.defaultZone: http://discovery-server:8761/eureka/

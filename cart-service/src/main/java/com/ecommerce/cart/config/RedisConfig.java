@@ -1,0 +1,2 @@
+package com.ecommerce.cart.config; import org.springframework.context.annotation.*;import org.springframework.data.redis.connection.RedisConnectionFactory;import org.springframework.data.redis.core.RedisTemplate;
+@Configuration public class RedisConfig { @Bean public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory cf){ RedisTemplate<String,Object> t=new RedisTemplate<>(); t.setConnectionFactory(cf); return t;} }
