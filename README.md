@@ -124,6 +124,17 @@ mvn clean package -DskipTests
 docker-compose up --build
 ```
 
+### MySQL connectivity note
+If you run a service directly from your IDE/terminal (outside Docker), keep `MYSQL_HOST` as default (`localhost`) or set it explicitly:
+
+```bash
+export MYSQL_HOST=localhost
+export MYSQL_PORT=3306
+```
+
+When running inside Docker Compose, set `MYSQL_HOST=mysql` for the container network (or keep service-level env overrides).
+
+
 ## 10) OpenAPI
 - User Service Swagger UI: `http://localhost:8081/swagger-ui/index.html`
 - Similar endpoints are available when springdoc dependency is present in other services.
