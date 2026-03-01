@@ -135,6 +135,31 @@ export MYSQL_PORT=3306
 When running inside Docker Compose, set `MYSQL_HOST=mysql` for the container network (or keep service-level env overrides).
 
 
+### Docker Desktop troubleshooting (Windows)
+If you see an error like:
+
+```text
+open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified
+```
+
+it means Docker Compose cannot reach the Docker Engine (Docker Desktop is not running, not in Linux containers mode, or context is misconfigured).
+
+Use:
+
+```powershell
+# Verify Docker Desktop/Engine is reachable
+docker version
+docker context ls
+
+# Ensure Linux engine context is active
+docker context use desktop-linux
+
+# Then retry
+docker compose up --build
+```
+
+Also ensure Docker Desktop is started and WSL2 integration is enabled for your distro.
+
 ## 10) OpenAPI
 - User Service Swagger UI: `http://localhost:8081/swagger-ui/index.html`
 - Similar endpoints are available when springdoc dependency is present in other services.
